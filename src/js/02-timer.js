@@ -19,7 +19,9 @@ const options = {
     console.log(dateNow);
 
     if (selectedDates[0].getTime() <= dateNow.getTime()) {
-      window.alert('Please choose a date in the future');
+      //window.alert('Please choose a date in the future');
+      Notiflix.Notify.failure('Please choose a date in the future');
+
     } else {
       startBtn.disabled = false;
       distance = convertMs(selectedDates[0].getTime() - dateNow.getTime());
@@ -77,3 +79,7 @@ startBtn.addEventListener('click', () => {
     renderDate();
   }, 1000);
 });
+
+
+
+import Notiflix from 'notiflix';
