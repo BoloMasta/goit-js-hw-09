@@ -6,8 +6,6 @@ const startBtn = document.querySelector('[data-start]');
 const dateNow = new Date();
 let distance = 0;
 
-startBtn.disabled = true;
-
 //flatpickr
 const flatpickr = require('flatpickr');
 const options = {
@@ -27,19 +25,6 @@ const options = {
       distance = convertMs(selectedDates[0].getTime() - dateNow.getTime());
 
       console.log(distance);
-
-      document.querySelector('[data-days]').innerHTML = addLeadingZero(
-        distance.days
-      );
-      document.querySelector('[data-hours]').innerHTML = addLeadingZero(
-        distance.hours
-      );
-      document.querySelector('[data-minutes]').innerHTML = addLeadingZero(
-        distance.minutes
-      );
-      document.querySelector('[data-seconds]').innerHTML = addLeadingZero(
-        distance.seconds
-      );
     }
   },
 };
@@ -65,10 +50,30 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 }
 
-// console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
-// console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
-// console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
-
 function addLeadingZero(value) {
   return value.toString().padStart(2, '0');
 }
+
+const renderDate = () => {
+  document.querySelector('[data-days]').innerHTML = addLeadingZero(
+    distance.days
+  );
+  document.querySelector('[data-hours]').innerHTML = addLeadingZero(
+    distance.hours
+  );
+  document.querySelector('[data-minutes]').innerHTML = addLeadingZero(
+    distance.minutes
+  );
+  document.querySelector('[data-seconds]').innerHTML = addLeadingZero(
+    distance.seconds
+  );
+};
+//let timerId = null;
+startBtn.disabled = true;
+let timerId = null;
+
+startBtn.addEventListener('click', () => {
+  timerId = setInterval(() => {
+    renderDate();
+  }, 1000);
+});
