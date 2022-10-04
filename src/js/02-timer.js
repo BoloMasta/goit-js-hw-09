@@ -1,10 +1,15 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
+//import { Notify } from 'notiflix/build/notiflix-notify-aio';
+// import Notiflix from 'notiflix';
 
 const inputDate = document.querySelector('#datetime-picker');
 const startBtn = document.querySelector('[data-start]');
-const dateNow = new Date();
+let currentDate = new Date();
+let futureDate = 0;
 let distance = 0;
+startBtn.disabled = true;
+let timerId = null;
 
 //flatpickr
 const flatpickr = require('flatpickr');
@@ -15,18 +20,12 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    console.log(selectedDates[0]);
-    console.log(dateNow);
-
-    if (selectedDates[0].getTime() <= dateNow.getTime()) {
-      //window.alert('Please choose a date in the future');
+    // checking the indicated date
+    if (selectedDates[0].getTime() <= currentDate.getTime()) {
       Notiflix.Notify.failure('Please choose a date in the future');
-
     } else {
       startBtn.disabled = false;
-      distance = convertMs(selectedDates[0].getTime() - dateNow.getTime());
-
-      console.log(distance);
+      futureDate = selectedDates[0];
     }
   },
 };
@@ -53,10 +52,26 @@ function convertMs(ms) {
 }
 
 function addLeadingZero(value) {
+  // Adding "0" in front of the single-digit number
   return value.toString().padStart(2, '0');
 }
 
 const renderDate = () => {
+  //checking the current date and calculating the difference
+  currentDate = new Date();
+  distance = convertMs(futureDate.getTime() - currentDate.getTime());
+
+  // the countdown ends at 0: 0: 0: 0
+  if (
+    distance.days === 0 &&
+    distance.hours === 0 &&
+    distance.minutes === 0 &&
+    distance.seconds === 0
+  ) {
+    clearInterval(timerId);
+  }
+
+  // counter rendering
   document.querySelector('[data-days]').innerHTML = addLeadingZero(
     distance.days
   );
@@ -70,16 +85,9 @@ const renderDate = () => {
     distance.seconds
   );
 };
-//let timerId = null;
-startBtn.disabled = true;
-let timerId = null;
 
 startBtn.addEventListener('click', () => {
   timerId = setInterval(() => {
     renderDate();
   }, 1000);
 });
-
-
-
-import Notiflix from 'notiflix';
