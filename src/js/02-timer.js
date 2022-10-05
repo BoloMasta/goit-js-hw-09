@@ -31,7 +31,7 @@ const options = {
   },
 };
 
-flatpickr(inputDate, options);
+const fp = flatpickr(inputDate, options);
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
