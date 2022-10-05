@@ -8,7 +8,7 @@ const startBtn = document.querySelector('[data-start]');
 let currentDate = new Date();
 let futureDate = 0;
 let distance = 0;
-startBtn.disabled = true;
+// startBtn.disabled = true;
 let timerId = null;
 
 //flatpickr
@@ -24,7 +24,8 @@ const options = {
     if (selectedDates[0].getTime() <= currentDate.getTime()) {
       Notiflix.Notify.failure('Please choose a date in the future');
     } else {
-      startBtn.disabled = false;
+      //startBtn.disabled = false;
+      startBtn.classList.remove('disabled-btn');
       futureDate = selectedDates[0];
     }
   },
@@ -87,7 +88,13 @@ const renderDate = () => {
 };
 
 startBtn.addEventListener('click', () => {
+  startBtn.classList.add('disabled-btn');
+  // first function call without delay 1s
+  renderDate();
+  // interval setting
   timerId = setInterval(() => {
     renderDate();
   }, 1000);
 });
+
+

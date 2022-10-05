@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Promise generator</title>
     <link rel="stylesheet" href="css/common.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sbuttons/dist/sbuttons.min.css"
+    />
   </head>
+
   <body>
     <p><a href="index.html">Go back</a></p>
 
@@ -22,7 +27,14 @@
         Amount
         <input type="number" name="amount" required />
       </label>
-      <button type="submit">Create promises</button>
+      <button
+        type="submit"
+        class="sbtn xsmall-btn rounded-btn purple-btn transparent-btn shadow-on-hover-btn disabled-btn"
+        style="width: 130px; height: 30px; font-size: 13px; margin-left: 10px;"
+      >
+      
+        Create promises
+      </button>
     </form>
 
     <script src="js/03-promises.js" type="module"></script>

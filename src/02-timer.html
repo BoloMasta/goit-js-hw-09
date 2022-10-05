@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Countdown timer</title>
     <link rel="stylesheet" href="css/common.css" />
-
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sbuttons/dist/sbuttons.min.css"
+    />
 
     <style>
       input {
@@ -13,14 +16,13 @@
         height: 40px;
         font-size: 19px;
         outline: none;
+        padding: 0;
+        position: relative;
+        top: -2px;
       }
-      button {
-        height: 40px;
-        width: 60px;
-        font-size: 16px;
-        cursor: pointer;
-      }
+
       .timer {
+        margin-top: 10px;
         width: 320px;
       }
       .field {
@@ -45,7 +47,14 @@
     <p><a href="index.html">Go back</a></p>
 
     <input type="text" id="datetime-picker" />
-    <button type="button" data-start>Start</button>
+    <button
+      type="button"
+      class="sbtn  next-arrow-btn rounded-btn black-btn disabled-btn"
+      style="margin-left: 10px; height: 45px; font-size: 17px;"
+      data-start
+    >
+      Start
+    </button>
 
     <div class="timer">
       <div class="field">
