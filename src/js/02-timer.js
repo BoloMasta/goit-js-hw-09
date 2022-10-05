@@ -16,7 +16,7 @@ const flatpickr = require('flatpickr');
 const options = {
   enableTime: true,
   time_24hr: true,
-  allowInput: false,
+  // allowInput: false,
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
