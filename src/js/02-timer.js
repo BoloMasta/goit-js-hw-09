@@ -89,6 +89,7 @@ const renderDate = () => {
 
 startBtn.addEventListener('click', () => {
   startBtn.classList.add('disabled-btn');
+  
   // first function call without delay 1s
   renderDate();
   // interval setting
