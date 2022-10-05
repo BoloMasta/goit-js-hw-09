@@ -33,8 +33,6 @@ const options = {
 
 flatpickr(inputDate, options);
 
-
-
 function convertMs(ms) {
   // Number of milliseconds per unit of time
   const second = 1000;
@@ -98,5 +96,3 @@ startBtn.addEventListener('click', () => {
     renderDate();
   }, 1000);
 });
-
-

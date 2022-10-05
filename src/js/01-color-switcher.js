@@ -29,5 +29,3 @@ stopBtn.addEventListener('click', () => {
   stopBtn.classList.add('disabled-btn');
   startBtn.classList.remove('disabled-btn');
 });
-
-
