@@ -16,7 +16,7 @@ const flatpickr = require('flatpickr');
 const options = {
   enableTime: true,
   time_24hr: true,
-  // allowInput: false,
+  allowInput: false,
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
@@ -31,7 +31,9 @@ const options = {
   },
 };
 
-const fp = flatpickr(inputDate, options);
+flatpickr(inputDate, options);
+
+
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
