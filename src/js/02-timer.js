@@ -34,7 +34,9 @@ const options = {
 };
 
 //document.getElementById("#datetime-picker").flatpickr(options);
-const fp = flatpickr(inputDate, options);
+//flatpickr(inputDate, options);
+
+inputDate.flatpickr(options);
 
 console.log('STEP 2');
 
