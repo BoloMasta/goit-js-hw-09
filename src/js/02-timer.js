@@ -33,7 +33,8 @@ const options = {
   },
 };
 
-flatpickr('#datetime-picker', options);
+//document.getElementById("#datetime-picker").flatpickr(options);
+const fp = flatpickr(inputDate, options);
 
 console.log('STEP 2');
 
