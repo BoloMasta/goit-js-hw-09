@@ -62,10 +62,9 @@ form.addEventListener('submit', event => {
   createPromise(position, delayStep.value);
 });
 
+// if all fields are filled, the button will be activated
 form.addEventListener('input', checkValue);
-
 function checkValue(e) {
-  // if all fields are filled, the button will be activated
   if (firstDelay.value > 0 && delayStep.value > 0 && amount.value > 0) {
     submitBtn.classList.remove('disabled-btn');
   }

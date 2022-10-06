@@ -1,17 +1,12 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
-//import { Notify } from 'notiflix/build/notiflix-notify-aio';
-// import Notiflix from 'notiflix';
 
 const inputDate = document.querySelector('#datetime-picker');
 const startBtn = document.querySelector('[data-start]');
 let currentDate = new Date();
 let futureDate = 0;
 let distance = 0;
-// startBtn.disabled = true;
 let timerId = null;
-
-console.log('STEP 1');
 
 //flatpickr
 const flatpickr = require('flatpickr');
@@ -33,12 +28,8 @@ const options = {
   },
 };
 
-//document.getElementById("#datetime-picker").flatpickr(options);
-//flatpickr(inputDate, options);
 
 inputDate.flatpickr(options);
-
-console.log('STEP 2');
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
@@ -95,7 +86,9 @@ const renderDate = () => {
 };
 
 startBtn.addEventListener('click', () => {
+  // restart is not possible until the page is refreshed
   startBtn.classList.add('disabled-btn');
+  inputDate.disabled = true;
 
   // first function call without delay 1s
   renderDate();
@@ -105,4 +98,4 @@ startBtn.addEventListener('click', () => {
   }, 1000);
 });
 
-console.log('STEP 3');
+
