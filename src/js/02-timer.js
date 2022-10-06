@@ -11,6 +11,8 @@ let distance = 0;
 // startBtn.disabled = true;
 let timerId = null;
 
+console.log('STEP 1');
+
 //flatpickr
 const flatpickr = require('flatpickr');
 const options = {
@@ -32,6 +34,8 @@ const options = {
 };
 
 flatpickr(inputDate, options);
+
+console.log('STEP 2');
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
@@ -89,7 +93,7 @@ const renderDate = () => {
 
 startBtn.addEventListener('click', () => {
   startBtn.classList.add('disabled-btn');
-  
+
   // first function call without delay 1s
   renderDate();
   // interval setting
@@ -98,4 +102,4 @@ startBtn.addEventListener('click', () => {
   }, 1000);
 });
 
-// test koment
+console.log('STEP 3');
