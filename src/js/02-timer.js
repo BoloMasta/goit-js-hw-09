@@ -1,15 +1,14 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
+import Notiflix from 'notiflix';
 
 const inputDate = document.querySelector('#datetime-picker');
 const startBtn = document.querySelector('[data-start]');
 let currentDate = new Date();
-let futureDate = 0;
-let distance = 0;
+let futureDate;
 let timerId = null;
 
-//flatpickr
-const flatpickr = require('flatpickr');
+// flatpickr
 const options = {
   enableTime: true,
   time_24hr: true,
@@ -21,13 +20,11 @@ const options = {
     if (selectedDates[0].getTime() <= currentDate.getTime()) {
       Notiflix.Notify.failure('Please choose a date in the future');
     } else {
-      //startBtn.disabled = false;
       startBtn.classList.remove('disabled-btn');
       futureDate = selectedDates[0];
     }
   },
 };
-
 
 inputDate.flatpickr(options);
 
@@ -58,7 +55,7 @@ function addLeadingZero(value) {
 const renderDate = () => {
   //checking the current date and calculating the difference
   currentDate = new Date();
-  distance = convertMs(futureDate.getTime() - currentDate.getTime());
+  const distance = convertMs(futureDate.getTime() - currentDate.getTime());
 
   // the countdown ends at 0: 0: 0: 0
   if (
@@ -97,5 +94,3 @@ startBtn.addEventListener('click', () => {
     renderDate();
   }, 1000);
 });
-
-

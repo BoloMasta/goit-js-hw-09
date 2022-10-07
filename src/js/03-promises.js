@@ -8,17 +8,15 @@ const submitBtn = document.querySelector('[type="submit"]');
 
 let timerId = null;
 let position = 1;
-let counter = 0;
 
 function createPromise(position, delay) {
-  counter = amount.value - 1;
   delay = firstDelay.value;
-
+  
   setTimeout(() => {
     timerId = setInterval(() => {
       const shouldResolve = Math.random() > 0.3;
 
-      if (counter === 0) {
+      if (position == amount.value) {
         clearInterval(timerId);
         submitBtn.classList.remove('disabled-btn');
       }
@@ -36,7 +34,6 @@ function createPromise(position, delay) {
       const nextStep = () => {
         delay = parseInt(delay) + parseInt(delayStep.value);
         position += 1;
-        counter -= 1;
       };
 
       promise
@@ -44,14 +41,13 @@ function createPromise(position, delay) {
           Notiflix.Notify.success(
             `✅ Fulfilled promise ${position} in ${delay}ms`
           );
-          nextStep();
         })
         .catch(({ position, delay }) => {
           Notiflix.Notify.failure(
             `❌ Rejected promise ${position} in ${delay}ms`
           );
-          nextStep();
-        });
+        })
+        .finally(nextStep);
     }, delayStep.value);
   }, firstDelay.value);
 }
@@ -62,10 +58,10 @@ form.addEventListener('submit', event => {
   createPromise(position, delayStep.value);
 });
 
-// if all fields are filled, the button will be activated
+// validation
 form.addEventListener('input', checkValue);
 function checkValue(e) {
-  if (firstDelay.value > 0 && delayStep.value > 0 && amount.value > 0) {
+  if (firstDelay.value >= 0 && delayStep.value >= 0 && amount.value > 0) {
     submitBtn.classList.remove('disabled-btn');
   }
 }
